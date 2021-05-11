@@ -9,12 +9,12 @@ window = tk.Tk()
 window.geometry("515x486")
 window.title("Számológép")
 
-"""create a notebook"""
+"""Create a notebook"""
 notebook = ttk.Notebook(window)
 notebook.pack(pady=50, expand=True)
 notebook.grid(row=1, column=0)
 
-"""create frames"""
+"""Create frames"""
 frame0 = ttk.Frame(window)
 frame0.grid(row=0, column=0)
 
@@ -29,7 +29,7 @@ frame2.pack(fill='both', expand=True)
 notebook.add(frame1, text='Általános')
 notebook.add(frame2, text='Tudományos')
 
-
+"""Adding the input field"""
 e = Entry(frame0, width = 35, borderwidth=5)
 e.grid(row=0, column = 0, columnspan = 3,padx = 10, pady=10 )
 e.insert(0, "  ")
@@ -50,6 +50,10 @@ def button_clear():
     """Function to clear the input field"""
     e.delete(0, END)
 
+def button_clear1():
+    """Function to clear the input field"""
+    e.delete(0, END)
+
 def button_add():
     first_number = e.get()
     global f_num
@@ -59,6 +63,27 @@ def button_add():
     muv = 1  ## 1 = összeadás
 
 def button_equal():
+    """Equal function scans the string to evaluates and display it"""
+    second_number = e.get()
+    e.delete(0,END)
+    if muv == 1:
+        e.insert(0,f_num + float(second_number))
+    elif muv == 2:
+        e.insert(0,f_num - float(second_number))
+    elif muv == 3:
+        e.insert(0,f_num * float(second_number))
+    elif muv == 4:
+        e.insert(0,f_num / float(second_number))
+    elif muv == 5:
+        e.insert(0,f_num * float(f_num))
+    elif muv == 6:
+        e.insert(0,abs (float(f_num)))
+    elif muv == 7:
+        e.insert(0, -1*(float(f_num)))
+    elif muv == 8:
+        e.insert (0, f_num % float(second_number))
+
+def button_equal1():
     """Equal function scans the string to evaluates and display it"""
     second_number = e.get()
     e.delete(0,END)
@@ -108,6 +133,15 @@ def button_divide():
     global muv
     muv = 4
 
+def button_divide1():
+    """divide the current value by the input value"""
+    first_number = e.get()
+    global f_num
+    f_num = float(first_number)
+    e.delete(0, END)
+    global muv
+    muv = 4
+
 def button_maradek():
     """Residual division of current value"""
     first_number = e.get()
@@ -133,6 +167,12 @@ def button_abszolutertek():
     e.insert(0, abs (float(current)))
 
 def button_minusz():
+    """change a positive or negative number"""
+    current = e.get()
+    e.delete(0,END)
+    e.insert(0, -1 * float(current))
+
+def button_minusz1():
     """change a positive or negative number"""
     current = e.get()
     e.delete(0,END)
@@ -186,10 +226,14 @@ def button_gyok():
     e.delete(0,END)
     e.insert(0, math.sqrt (float(current)))
     
+    
 def button_undo():
     """Function which works like backspace"""
     length = len(e.get())
     e.delete(length-1, 'end')
+    if length == 1:
+        e.insert(0,"0")
+
     
 def button_pipi():
     """Returns the completion of the operation with pi"""
@@ -198,9 +242,7 @@ def button_pipi():
     length = len(e.get())
     e.insert(length, str(math.pi))
     
-
-
-"""Create Buttons"""
+"""Code to add buttons to the Calculator"""
 button_1 = Button(frame1, text = "1" , padx = 40, pady = 20, command =lambda: button_click(1))
 button_2 = Button(frame1, text = "2" , padx = 40, pady = 20, command =lambda: button_click(2))
 button_3 = Button(frame1, text = "3" , padx = 40, pady = 20, command =lambda: button_click(3))
@@ -222,22 +264,26 @@ button_seven = Button(frame2, text = "7" , padx = 40, pady = 20, command =lambda
 button_eight = Button(frame2, text = "8" , padx = 40, pady = 20, command =lambda: button_click(8))
 button_nine = Button(frame2, text = "9" , padx = 40, pady = 20, command =lambda: button_click(9))
 button_zero = Button(frame2, text = "0" , padx = 40, pady = 20, command =lambda: button_click(0))
-button_c = Button(frame2, text = "C" , padx = 40, pady = 20, command = button_clear)
-button_osszeadas = Button(frame2, text = "+", padx = 40, pady = 20, command = button_add )
-button_kivonas = Button(frame2, text = "-" , padx = 40, pady = 20, command = button_subtract)
-button_szorzas = Button(frame2, text = "*" , padx = 40, pady = 20, command = button_multiply)
-button_backspace = Button(frame1, text = "<<", padx = 35, pady = 20,font = 'times 15 bold', command =lambda: button_undo())
 
-button_add = Button(frame1, text = "+" , padx = 40, pady = 20, command = button_add)
+
+"""Adding operations"""
 button_equal = Button(frame1, text = "=" , padx = 80, pady = 20, command = button_equal)
+button_egyenlo = Button(frame2, text = "=" , padx = 40, pady = 20, command = button_equal1)
 button_clear = Button(frame1, text = "C" , padx = 80, pady = 20, command = button_clear)
+button_clear1 = Button(frame2, text = "C" , padx = 40, pady = 20, command = button_clear1)
+button_osszeadas = Button(frame2, text = "+", padx = 40, pady = 20, command = button_add)
+button_add = Button(frame1, text = "+" , padx = 40, pady = 20, command = button_add)
+button_kivonas = Button(frame2, text = "-" , padx = 40, pady = 20, command = button_subtract)
 button_subtract = Button(frame1, text = "-" , padx = 40, pady = 20, command = button_subtract)
+button_szorzas = Button(frame2, text = "*" , padx = 40, pady = 20, command = button_multiply)
 button_multiply = Button(frame1, text = "*" , padx = 40, pady = 20, command = button_multiply)
 button_divide = Button(frame1, text = "/" , padx = 40, pady = 20, command = button_divide)
-button_vesszo = Button(frame1, text = ".", padx = 40, pady =20, command =lambda: button_click(10)) # 10 = "."
+button_osztas = Button(frame2, text = "/" , padx = 40, pady = 20, command = button_divide1)
 button_negyzet = Button(frame2, text = "x^2", padx = 30, pady = 20, command = button_negyzet)
+button_negyzet1 = Button(frame1, text = "x^2", padx = 30, pady = 20, command = button_negyzet)
 button_abszolutertek=Button(frame2, text= "|x|", padx=30,pady=20,command = button_abszolutertek)
 button_minusz=Button(frame1,text= "-/+", padx=30,pady=20,command=button_minusz)
+button_minusz1=Button(frame2,text= "-/+", padx=30,pady=20,command=button_minusz1)
 button_recip=Button(frame2, text = "1/x", padx = 30,pady = 20, command= button_recip)
 button_lg= Button(frame2, text = "lg", padx = 35, pady = 20, command = button_lg)
 button_sinus= Button(frame2, text = "sin", padx = 30, pady = 20, command = button_sinus)
@@ -246,10 +292,15 @@ button_tan=Button(frame2, text = "tan", padx = 30, pady = 20, command = button_t
 button_ctg=Button(frame2, text = "ctg", padx = 30, pady = 20, command = button_ctg)
 button_fact=Button(frame2,text = "n!", padx = 35, pady= 20, command = button_fact)
 button_pi = Button(frame1, text = "pi", padx = 35, pady = 20, command = button_pipi)
+button_pi_tudomanyos= Button(frame2, text = "pi", padx = 35, pady = 20, command = button_pipi)
 button_gyok= Button (frame2, text = "sqrt", padx = 25, pady = 20, command = button_gyok)
-button_maradekos = Button(frame1, text = "%",padx = 40, pady = 20, command= button_maradek )
+button_maradekos = Button(frame1, text = "%",padx = 40, pady = 20, command= button_maradek)
+button_backspace = Button(frame1, text = "<<", padx = 35, pady = 20, command =lambda: button_undo())
+button_bckspc = Button(frame2, text = "<<", padx = 35, pady = 20, command=lambda:button_undo())
+button_pont = Button(frame2, text = ".", padx = 40, pady =20, command =lambda: button_click(10))
+button_vesszo = Button(frame1, text = ".", padx = 40, pady =20, command =lambda: button_click(10))
 
-"""Create fonts"""
+"""Create fonts, For uniform button size"""
 myFont=font.Font(family= 'Courier', size = 12, weight='bold')
 button_1['font']=myFont
 button_2['font']=myFont
@@ -261,7 +312,6 @@ button_7['font']=myFont
 button_8['font']=myFont
 button_9['font']=myFont
 button_0['font']=myFont
-
 button_one['font']= myFont
 button_two['font']= myFont
 button_three['font']= myFont
@@ -275,10 +325,10 @@ button_zero['font']= myFont
 button_osszeadas['font']=myFont
 button_kivonas['font']=myFont
 button_szorzas['font']=myFont
-button_c['font'] = myFont
-
+button_clear1['font'] = myFont
 button_add['font']=myFont
 button_equal['font']=myFont
+button_egyenlo['font'] = myFont
 button_clear['font']=myFont
 button_subtract['font']=myFont
 button_multiply['font']=myFont
@@ -295,9 +345,16 @@ button_tan['font']=myFont
 button_ctg['font']=myFont
 button_fact['font']=myFont
 button_pi['font']= myFont
+button_pi_tudomanyos['font']= myFont
 button_gyok['font']= myFont
 button_backspace['font'] = myFont
 button_maradekos['font'] = myFont
+button_negyzet1['font'] = myFont
+button_bckspc['font'] = myFont
+button_pont['font'] = myFont
+button_egyenlo['font'] = myFont
+button_minusz1['font'] = myFont
+button_osztas['font'] = myFont
 
 """Location of buttons"""
 button_1.grid(row=3, column=0)
@@ -320,6 +377,7 @@ button_divide.grid(row=1, column = 3)
 button_vesszo.grid(row = 4, column = 2)
 button_maradekos.grid(row = 2, column = 4, sticky=N+S+E+W)
 button_minusz.grid(row=4, column=0)
+
 button_backspace.grid (row = 1, column = 4)
 
 button_one.grid(row = 1, column = 0)
@@ -331,23 +389,30 @@ button_six.grid(row = 2, column = 2)
 button_seven.grid(row = 3, column = 0)
 button_eight.grid(row = 3, column = 1)
 button_nine.grid(row = 3, column = 2)
-button_zero.grid(row = 4, column = 0)
-button_osszeadas.grid(row = 5, column = 0)
-button_kivonas.grid(row=6, column = 0)
-button_szorzas.grid(row=6,column = 1)
-button_lg.grid(row=4,column = 4)
+button_zero.grid(row = 4, column = 1)
+
+button_osszeadas.grid(row = 4, column = 4)
+button_kivonas.grid(row=3, column = 4)
+button_szorzas.grid(row=2,column = 4)
+button_osztas.grid ( row =4, column =5 )
+button_lg.grid(row=5,column = 0)
 button_sinus.grid(row= 5,column = 4)
 button_cos.grid(row = 5, column = 5)
 button_tan.grid(row = 6, column = 4)
 button_ctg.grid(row = 6, column = 5)
-button_fact.grid(row = 4, column = 5)
-button_pi.grid (row = 3, column = 4)
-button_gyok.grid(row= 2, column = 5)
+button_fact.grid(row = 6, column = 1)
+button_pi.grid(row = 3, column = 4)
+button_gyok.grid(row= 5, column = 2)
 button_negyzet.grid (row = 5, column = 1)
+button_negyzet1.grid (row = 4, column = 4)
 button_abszolutertek.grid(row=1,column=4)
-button_c.grid(row =4 , column=2 )
-button_recip.grid(row=3, column = 4)
-button_pi.grid(row = 3, column= 4)
+button_clear1.grid(row =4 , column=0 )
+button_recip.grid(row=6, column = 0)
+button_pi_tudomanyos.grid(row = 3, column= 5)
+button_bckspc.grid (row = 1, column = 5)
+button_pont.grid(row = 4, column = 2)
+button_egyenlo.grid(row = 2, column = 5)
+button_minusz1.grid(row=6, column=2)
 
 
 
