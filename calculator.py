@@ -20,14 +20,17 @@ frame0.grid(row=0, column=0)
 
 frame1 = ttk.Frame(notebook, width=400, height=280)
 frame2 = ttk.Frame(notebook, width=400, height=280)
+frame3 = ttk.Frame(notebook,width=400, height=280)
 
 # frame0.pack(fill='both', expand=True)
 frame1.pack(fill='both', expand=True)
 frame2.pack(fill='both', expand=True)
+frame3.pack(fill='both', expand=True)
 
 """add frames to notebook"""
 notebook.add(frame1, text='Általános')
 notebook.add(frame2, text='Tudományos')
+notebook.add(frame3, text='Előzmények')
 
 """Adding the input field"""
 e = Entry(frame0, width = 35, borderwidth=5)
