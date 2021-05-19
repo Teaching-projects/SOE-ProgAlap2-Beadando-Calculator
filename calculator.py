@@ -5,8 +5,9 @@ from tkinter import ttk
 import tkinter as tk
 
 
+
 window = tk.Tk()
-window.geometry("515x486")
+window.geometry("535x542")
 window.title("Számológép")
 
 """Create a notebook"""
@@ -33,7 +34,7 @@ notebook.add(frame2, text='Tudományos')
 notebook.add(frame3, text='Előzmények')
 
 """Adding the input field"""
-e = Entry(frame0, width = 35, borderwidth=5)
+e = Entry(frame0, width = 50, borderwidth=10)
 e.grid(row=0, column = 0, columnspan = 3,padx = 10, pady=10 )
 e.insert(0, "  ")
 
@@ -107,8 +108,6 @@ def button_equal1():
     elif muv == 8:
         e.insert (0, f_num % float(second_number))
 
-
-
 def button_subtract():
     """subtracts the input value from the current value"""
     first_number = e.get()
@@ -155,6 +154,15 @@ def button_maradek():
     muv = 8
 
 def button_negyzet():
+    """We get the square of the current number"""
+    first_number = e.get()
+    global f_num
+    f_num = float(first_number)
+    e.delete(0, END)
+    global muv
+    muv = 5
+
+def button_negyzet1():
     """We get the square of the current number"""
     first_number = e.get()
     global f_num
@@ -229,7 +237,6 @@ def button_gyok():
     e.delete(0,END)
     e.insert(0, math.sqrt (float(current)))
     
-    
 def button_undo():
     """Function which works like backspace"""
     length = len(e.get())
@@ -237,74 +244,81 @@ def button_undo():
     if length == 1:
         e.insert(0,"0")
 
-    
 def button_pipi():
     """Returns the completion of the operation with pi"""
     if e.get() == "0":
         e.delete(0, END)
     length = len(e.get())
     e.insert(length, str(math.pi))
-    
+
+def button_2pipi():
+    """Returns the completion of the operation with pi"""
+    if e.get() == "0":
+        e.delete(0, END)
+    length = len(e.get())
+    e.insert(length, str(math.tau))
+
+
 """Code to add buttons to the Calculator"""
-button_1 = Button(frame1, text = "1" , padx = 40, pady = 20, command =lambda: button_click(1))
-button_2 = Button(frame1, text = "2" , padx = 40, pady = 20, command =lambda: button_click(2))
-button_3 = Button(frame1, text = "3" , padx = 40, pady = 20, command =lambda: button_click(3))
-button_4 = Button(frame1, text = "4" , padx = 40, pady = 20, command =lambda: button_click(4))
-button_5 = Button(frame1, text = "5" , padx = 40, pady = 20, command =lambda: button_click(5))
-button_6 = Button(frame1, text = "6" , padx = 40, pady = 20, command =lambda: button_click(6))
-button_7 = Button(frame1, text = "7" , padx = 40, pady = 20, command =lambda: button_click(7))
-button_8 = Button(frame1, text = "8" , padx = 40, pady = 20, command =lambda: button_click(8))
-button_9 = Button(frame1, text = "9" , padx = 40, pady = 20, command =lambda: button_click(9))
-button_0 = Button(frame1, text = "0" , padx = 40, pady = 20, command =lambda: button_click(0))
+button_1 = Button(frame1, text = "1" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(1))
+button_2 = Button(frame1, text = "2" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(2))
+button_3 = Button(frame1, text = "3" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(3))
+button_4 = Button(frame1, text = "4" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(4))
+button_5 = Button(frame1, text = "5" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(5))
+button_6 = Button(frame1, text = "6" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(6))
+button_7 = Button(frame1, text = "7" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(7))
+button_8 = Button(frame1, text = "8" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(8))
+button_9 = Button(frame1, text = "9" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(9))
+button_0 = Button(frame1, text = "0" , padx = 40, pady = 20,borderwidth=4,bg = "gray", fg = "white", command =lambda: button_click(0))
 
-button_one = Button(frame2, text = "1" , padx = 40, pady = 20, command =lambda: button_click(1))
-button_two = Button(frame2, text = "2" , padx = 40, pady = 20, command =lambda: button_click(2))
-button_three = Button(frame2, text = "3" , padx = 40, pady = 20, command =lambda: button_click(3))
-button_four = Button(frame2, text = "4" , padx = 40, pady = 20, command =lambda: button_click(4))
-button_five = Button(frame2, text = "5" , padx = 40, pady = 20, command =lambda: button_click(5))
-button_six = Button(frame2, text = "6" , padx = 40, pady = 20, command =lambda: button_click(6))
-button_seven = Button(frame2, text = "7" , padx = 40, pady = 20, command =lambda: button_click(7))
-button_eight = Button(frame2, text = "8" , padx = 40, pady = 20, command =lambda: button_click(8))
-button_nine = Button(frame2, text = "9" , padx = 40, pady = 20, command =lambda: button_click(9))
-button_zero = Button(frame2, text = "0" , padx = 40, pady = 20, command =lambda: button_click(0))
-
+button_one = Button(frame2, text = "1" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(1))
+button_two = Button(frame2, text = "2" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(2))
+button_three = Button(frame2, text = "3" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(3))
+button_four = Button(frame2, text = "4" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(4))
+button_five = Button(frame2, text = "5" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(5))
+button_six = Button(frame2, text = "6" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(6))
+button_seven = Button(frame2, text = "7" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(7))
+button_eight = Button(frame2, text = "8" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(8))
+button_nine = Button(frame2, text = "9" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(9))
+button_zero = Button(frame2, text = "0" , padx = 40, pady = 20,borderwidth=4, command =lambda: button_click(0))
 
 """Adding operations"""
-button_equal = Button(frame1, text = "=" , padx = 80, pady = 20, command = button_equal)
-button_egyenlo = Button(frame2, text = "=" , padx = 40, pady = 20, command = button_equal1)
-button_clear = Button(frame1, text = "C" , padx = 80, pady = 20, command = button_clear)
-button_clear1 = Button(frame2, text = "C" , padx = 40, pady = 20, command = button_clear1)
-button_osszeadas = Button(frame2, text = "+", padx = 40, pady = 20, command = button_add)
-button_add = Button(frame1, text = "+" , padx = 40, pady = 20, command = button_add)
-button_kivonas = Button(frame2, text = "-" , padx = 40, pady = 20, command = button_subtract)
-button_subtract = Button(frame1, text = "-" , padx = 40, pady = 20, command = button_subtract)
-button_szorzas = Button(frame2, text = "*" , padx = 40, pady = 20, command = button_multiply)
-button_multiply = Button(frame1, text = "*" , padx = 40, pady = 20, command = button_multiply)
-button_divide = Button(frame1, text = "/" , padx = 40, pady = 20, command = button_divide)
-button_osztas = Button(frame2, text = "/" , padx = 40, pady = 20, command = button_divide1)
-button_negyzet = Button(frame2, text = "x^2", padx = 30, pady = 20, command = button_negyzet)
-button_negyzet1 = Button(frame1, text = "x^2", padx = 30, pady = 20, command = button_negyzet)
-button_abszolutertek=Button(frame2, text= "|x|", padx=30,pady=20,command = button_abszolutertek)
-button_minusz=Button(frame1,text= "-/+", padx=30,pady=20,command=button_minusz)
-button_minusz1=Button(frame2,text= "-/+", padx=30,pady=20,command=button_minusz1)
-button_recip=Button(frame2, text = "1/x", padx = 30,pady = 20, command= button_recip)
-button_lg= Button(frame2, text = "lg", padx = 35, pady = 20, command = button_lg)
-button_sinus= Button(frame2, text = "sin", padx = 30, pady = 20, command = button_sinus)
-button_cos=Button(frame2, text = "cos", padx = 30, pady = 20, command = button_cos)
-button_tan=Button(frame2, text = "tan", padx = 30, pady = 20, command = button_tan)
-button_ctg=Button(frame2, text = "ctg", padx = 30, pady = 20, command = button_ctg)
-button_fact=Button(frame2,text = "n!", padx = 35, pady= 20, command = button_fact)
-button_pi = Button(frame1, text = "pi", padx = 35, pady = 20, command = button_pipi)
-button_pi_tudomanyos= Button(frame2, text = "pi", padx = 35, pady = 20, command = button_pipi)
-button_gyok= Button (frame2, text = "sqrt", padx = 25, pady = 20, command = button_gyok)
-button_maradekos = Button(frame1, text = "%",padx = 40, pady = 20, command= button_maradek)
-button_backspace = Button(frame1, text = "<<", padx = 35, pady = 20, command =lambda: button_undo())
-button_bckspc = Button(frame2, text = "<<", padx = 35, pady = 20, command=lambda:button_undo())
-button_pont = Button(frame2, text = ".", padx = 40, pady =20, command =lambda: button_click(10))
-button_vesszo = Button(frame1, text = ".", padx = 40, pady =20, command =lambda: button_click(10))
+button_equal = Button(frame1, text = "=" , padx = 80, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_equal)
+button_egyenlo = Button(frame2, text = "=" , padx = 40, pady = 20,borderwidth=4, command = button_equal1)
+button_clear = Button(frame1, text = "C" , padx = 80, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_clear)
+button_clear1 = Button(frame2, text = "C" , padx = 40, pady = 20,borderwidth=4, command = button_clear1)
+button_osszeadas = Button(frame2, text = "+", padx = 40, pady = 20,borderwidth=4, command = button_add)
+button_add = Button(frame1, text = "+" , padx = 40, pady = 20,borderwidth=4,bg = "orange", fg = "white", command = button_add)
+button_kivonas = Button(frame2, text = "-" , padx = 40, pady = 20,borderwidth=4,bg = "orange", fg = "white", command = button_subtract)
+button_subtract = Button(frame1, text = "-" , padx = 40, pady = 20,borderwidth=4,bg = "orange", fg = "white", command = button_subtract)
+button_szorzas = Button(frame2, text = "*" , padx = 40, pady = 20,borderwidth=4, command = button_multiply)
+button_multiply = Button(frame1, text = "*" , padx = 40, pady = 20,borderwidth=4,bg = "orange", fg = "white", command = button_multiply)
+button_divide = Button(frame1, text = "/" , padx = 40, pady = 20,borderwidth=4,bg = "orange", fg = "white", command = button_divide)
+button_osztas = Button(frame2, text = "/" , padx = 40, pady = 20,borderwidth=4, command = button_divide1)
+button_negyzet = Button(frame2, text = "x^2", padx = 30, pady = 20,borderwidth=4, command = button_negyzet)
+button_negyzet1 = Button(frame1, text = "x^2", padx = 30, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_negyzet1)
+button_abszolutertek=Button(frame2, text= "|x|", padx=30,pady=20,borderwidth=4,command = button_abszolutertek)
+button_minusz=Button(frame1,text= "-/+", padx=30,pady=20,borderwidth=4,bg = "orange", fg = "white",command=button_minusz)
+button_minusz1=Button(frame2,text= "-/+", padx=30,pady=20,borderwidth=4,command=button_minusz1)
+button_recip=Button(frame2, text = "1/x", padx = 30,pady = 20,borderwidth=4, command= button_recip)
+button_lg= Button(frame2, text = "lg", padx = 35, pady = 20,borderwidth=4, command = button_lg)
+button_sinus= Button(frame2, text = "sin", padx = 30, pady = 20,borderwidth=4, command = button_sinus)
+button_cos=Button(frame2, text = "cos", padx = 30, pady = 20,borderwidth=4, command = button_cos)
+button_tan=Button(frame2, text = "tan", padx = 30, pady = 20,borderwidth=4, command = button_tan)
+button_ctg=Button(frame2, text = "ctg", padx = 30, pady = 20,borderwidth=4, command = button_ctg)
+button_fact=Button(frame2,text = "n!", padx = 35, pady= 20,borderwidth=4, command = button_fact)
+button_pi = Button(frame1, text = "pi", padx = 35, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_pipi)
+button_2pi = Button(frame1, text = "2pi", padx = 30, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_2pipi)
+button_pi_tudomanyos= Button(frame2, text = "pi", padx = 35,borderwidth=4, pady = 20, command = button_pipi)
+button_gyok= Button (frame2, text = "sqrt", padx = 25,borderwidth=4, pady = 20, command = button_gyok)
+button_maradekos = Button(frame1, text = "%",padx = 40,borderwidth=4, pady = 20,bg = "black", fg = "white", command= button_maradek)
+button_backspace = Button(frame1, text = "<<", padx = 35,borderwidth=4, pady = 20,bg = "black", fg = "white", command =lambda: button_undo())
+button_bckspc = Button(frame2, text = "<<", padx = 35, pady = 20,borderwidth=4, command=lambda:button_undo())
+button_pont = Button(frame2, text = ".", padx = 40, pady =20,borderwidth=4, command =lambda: button_click(10))
+button_vesszo = Button(frame1, text = ".", padx = 40, pady =20,borderwidth=4,bg = "orange", fg = "white", command =lambda: button_click(10))
 
 """Create fonts, For uniform button size"""
-myFont=font.Font(family= 'Courier', size = 12, weight='bold')
+myFont=font.Font(family= 'Courier', size = 13, weight='bold')
 button_1['font']=myFont
 button_2['font']=myFont
 button_3['font']=myFont
@@ -358,6 +372,7 @@ button_pont['font'] = myFont
 button_egyenlo['font'] = myFont
 button_minusz1['font'] = myFont
 button_osztas['font'] = myFont
+button_2pi['font'] = myFont
 
 """Location of buttons"""
 button_1.grid(row=3, column=0)
@@ -381,17 +396,16 @@ button_vesszo.grid(row = 4, column = 2)
 button_maradekos.grid(row = 2, column = 4, sticky=N+S+E+W)
 button_minusz.grid(row=4, column=0)
 
-button_backspace.grid (row = 1, column = 4)
-
-button_one.grid(row = 1, column = 0)
-button_two.grid(row = 1, column = 1)
-button_three.grid(row = 1, column = 2)
+button_backspace.grid (row = 5, column = 4)
+button_one.grid(row = 3, column = 0)
+button_two.grid(row = 3, column = 1)
+button_three.grid(row = 3, column = 2)
 button_four.grid(row = 2, column = 0)
 button_five.grid(row = 2, column = 1)
 button_six.grid(row = 2, column = 2)
-button_seven.grid(row = 3, column = 0)
-button_eight.grid(row = 3, column = 1)
-button_nine.grid(row = 3, column = 2)
+button_seven.grid(row = 1, column = 0)
+button_eight.grid(row = 1, column = 1)
+button_nine.grid(row = 1, column = 2)
 button_zero.grid(row = 4, column = 1)
 
 button_osszeadas.grid(row = 4, column = 4)
@@ -405,6 +419,7 @@ button_tan.grid(row = 6, column = 4)
 button_ctg.grid(row = 6, column = 5)
 button_fact.grid(row = 6, column = 1)
 button_pi.grid(row = 3, column = 4)
+button_2pi.grid(row =1 , column = 4)
 button_gyok.grid(row= 5, column = 2)
 button_negyzet.grid (row = 5, column = 1)
 button_negyzet1.grid (row = 4, column = 4)
@@ -417,6 +432,5 @@ button_pont.grid(row = 4, column = 2)
 button_egyenlo.grid(row = 2, column = 5)
 button_minusz1.grid(row=6, column=2)
 
-
-
 window.mainloop()
+
