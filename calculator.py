@@ -285,9 +285,9 @@ def calculateDate():
         return
 
     else:
-        birth_day = int(day_field.get())
-        birth_month = int(month_field.get())
-        birth_year = int(year_field.get())
+        dk_day = int(day_field.get())
+        dk_month = int(month_field.get())
+        dk_year = int(year_field.get())
 
         given_day = int(given_day_field.get())
         given_month = int(given_month_field.get())
@@ -295,17 +295,17 @@ def calculateDate():
 
         month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-        if (birth_day > given_day):
+        if (dk_day > given_day):
             given_month = given_month - 1
-            given_day = given_day + month[birth_month - 1]
+            given_day = given_day + month[dk_month - 1]
 
-        if (birth_month > given_month):
+        if (dk_month > given_month):
             given_year = given_year - 1
             given_month = given_month + 12
 
-        calculated_day = given_day - birth_day
-        calculated_month = given_month - birth_month
-        calculated_year = given_year - birth_year
+        calculated_day = given_day - dk_day
+        calculated_month = given_month - dk_month
+        calculated_year = given_year - dk_year
 
         outcome_day.insert(10, str(calculated_day))
         outcome_month.insert(10, str(calculated_month))
