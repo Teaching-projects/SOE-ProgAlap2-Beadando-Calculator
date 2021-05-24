@@ -23,16 +23,19 @@ frame0.grid(row=0, column=0)
 frame1 = ttk.Frame(notebook, width=400, height=280)
 frame2 = ttk.Frame(notebook, width=400, height=280)
 frame3 = ttk.Frame(notebook,width=400, height=280)
+frame4 = ttk.Frame(notebook,width=400, height=280)
 
 # frame0.pack(fill='both', expand=True)
 frame1.pack(fill='both', expand=True)
 frame2.pack(fill='both', expand=True)
 frame3.pack(fill='both', expand=True)
+frame4.pack(fill='both', expand=True)
 
 """add frames to notebook"""
 notebook.add(frame1, text='Általános')
 notebook.add(frame2, text='Tudományos')
 notebook.add(frame3, text='Dátumszámítás')
+notebook.add(frame4, text='Hossz átváltás')
 
 """Adding the input field"""
 e = Entry(frame0, width = 50, borderwidth=10)
@@ -259,6 +262,68 @@ def button_2pipi():
     length = len(e.get())
     e.insert(length, str(math.tau))
 
+def converter():
+    """Calculate conversion from metres"""
+    km = float(ent1.get()) / 1000
+    mm = float(ent1.get()) * 1000
+    cm = float(ent1.get()) * 100
+    mf = float(ent1.get()) * 0.00062
+    yard = float(ent1.get()) * 1.094
+    inch = float(ent1.get()) * 39.37
+    lab = float(ent1.get()) * 3.281
+    
+    text1.delete("1.0", END)
+    text1.insert(END, km)
+
+    text2.delete("1.0", END)
+    text2.insert(END, mm)
+
+    text3.delete("1.0", END)
+    text3.insert(END, cm)
+
+    text4.delete("1.0", END)
+    text4.insert(END, mf)
+
+    text5.delete("1.0", END)
+    text5.insert(END, yard)
+
+    text6.delete("1.0", END)
+    text6.insert(END, inch)
+
+    text7.delete("1.0", END)
+    text7.insert(END, lab)
+
+"""Creating Label widgets"""
+ent1= StringVar()
+label1 = Label(frame4, text="Hossz méterben").grid(row=0, column=0)
+ent= Entry(frame4, borderwidth=5, textvariable=ent1).grid(row=0, column=1)
+label3 = Label(frame4, text='kilóméter').grid(row=4, column=0)
+label4 = Label(frame4, text='miliméter').grid(row=2, column=0)
+lable5 = Label(frame4, text='centiméter').grid(row=3, column=0)
+label6 = Label(frame4, text='mérföld').grid(row=2, column=2)
+label7 = Label(frame4, text='yard').grid(row=4, column=2)
+label8 = Label(frame4, text='inch').grid(row=3, column=2)
+label9 = Label(frame4, text='láb').grid(row=5, column=0)
+
+text1 = Text(frame4, height=1, width=15, borderwidth=5)
+text2 = Text(frame4, height=1, width=15, borderwidth=5)
+text3 = Text(frame4, height=1, width=15, borderwidth=5)
+text4 = Text(frame4, height=1, width=15, borderwidth=5)
+text5 = Text(frame4, height=1, width=15, borderwidth=5)
+text6 = Text(frame4, height=1, width=15, borderwidth=5)
+text7 = Text(frame4, height=1, width=15, borderwidth=5)
+
+atvalt = Button(frame4, text="Átváltás", command=converter)
+atvalt.grid(row=1, column=1)
+
+text1.grid(row=4, column=1)
+text2.grid(row=2, column=1)
+text3.grid(row=3, column=1)
+text4.grid(row=2, column=3)
+text5.grid(row=4, column=3)
+text6.grid(row=3, column=3)
+text7.grid(row=5, column=1)
+
 def clearAll():
     day_field.delete(0, END)
     month_field.delete(0, END)
@@ -271,6 +336,7 @@ def clearAll():
     outcome_year.delete(0, END)
 
 def Error():
+    """If a field is left blank"""
     if (day_field.get() == "" or month_field.get() == ""
             or year_field.get() == "" or given_day_field.get() == ""
             or given_month_field.get() == "" or given_year_field.get() == ""):
@@ -280,6 +346,7 @@ def Error():
         return -1
 
 def calculateDate():
+    """Date calculation"""
     value = Error()
     if value == -1:
         return
@@ -311,6 +378,7 @@ def calculateDate():
         outcome_month.insert(10, str(calculated_month))
         outcome_year.insert(10, str(calculated_year))
 
+"""Creating Label widgets"""
 start_date= Label(frame3, text="Dátum kezdete").grid(row=0, column=1)
 given_date= Label(frame3, text="Dátum vége").grid(row=0, column=4)
 nap= Label(frame3, text="Nap").grid(row=1, column=0)
@@ -322,7 +390,7 @@ given_year = Label(frame3, text="Megadott év").grid(row=3, column=3)
 outcome_year = Label(frame3, text="Év").grid(row=6, column=0)
 outcome_month = Label(frame3, text="Hónap").grid(row=8, column=0)
 outcome_day = Label(frame3, text="Nap").grid(row=10, column=0)
-outcome_age = Button(frame3, text="Eredmény", command=calculateDate).grid(row=4, column=1)
+outcome_age = Button(frame3, text="Különbség", command=calculateDate).grid(row=4, column=1)
 torles = Button(frame3, text="Törlés", command=clearAll).grid(row=12, column=1)
 
 day_field = Entry(frame3, borderwidth=5)
@@ -392,7 +460,7 @@ button_minusz=Button(frame1,text= "-/+", padx=30,pady=20,borderwidth=4,bg = "ora
 button_minusz1=Button(frame2,text= "-/+", padx=30,pady=20,borderwidth=4,bg = "orange", fg = "white",command=button_minusz1)
 button_recip=Button(frame2, text = "1/x", padx = 30,pady = 20,borderwidth=4,bg = "black", fg = "white", command= button_recip)
 button_lg= Button(frame2, text = "lg", padx = 35, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_lg)
-button_sinus= Button(frame2, text = "sin", padx = 30, pady = 20,borderwidth=4,bg = "orange", fg = "white", command = button_sinus)
+button_sinus= Button(frame2, text = "sin", padx = 30, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_sinus)
 button_cos=Button(frame2, text = "cos", padx = 30, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_cos)
 button_tan=Button(frame2, text = "tan", padx = 30, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_tan)
 button_ctg=Button(frame2, text = "ctg", padx = 30, pady = 20,borderwidth=4,bg = "black", fg = "white", command = button_ctg)
@@ -522,8 +590,4 @@ button_pont.grid(row = 4, column = 2)
 button_egyenlo.grid(row = 5, column = 0)
 button_minusz1.grid(row=5, column=1)
 
-
-
-
 window.mainloop()
-
